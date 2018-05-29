@@ -23,6 +23,9 @@ RUN mkdir -p /etc/nginx \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/functions_config.php -o sv/lib/functions_config.php \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/includes.php -o sv/lib/includes.php \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/pages/base/configure.php -o sv/pages/base/configure.php \
+    && chown -R nginx:www-data /var/www/html \
+    && chmod g+w /var/www/html \
+    && chmod g+w /var/www/html/temp \
     && chmod a+x /entrypoint.sh
 
 COPY nginx.conf /etc/nginx
