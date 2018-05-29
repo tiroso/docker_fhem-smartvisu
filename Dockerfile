@@ -2,12 +2,12 @@ FROM php:7-fpm-alpine
 
 COPY entrypoint.sh /
 
-
+WORKDIR "/var/www/html"
 ## Install NGINX and GIT
 RUN mkdir -p /etc/nginx \
-    && apk add --update --no-cache curl tar nginx openssl openssl-dev nghttp2-dev ca-certificates 
-WORKDIR "/var/www/html"
-RUN curl https://github.com/Martin-Gleiss/smartvisu/archive/v2.8.tar.gz -o smartvisu-2.8.tar.gz \
+    && apk update
+    && apk add curl tar nginx \
+    && curl https://github.com/Martin-Gleiss/smartvisu/archive/v2.8.tar.gz -o smartvisu-2.8.tar.gz \
     && tar -xvzf smartvisu-2.8.tar.gz \
     && rm smartvisu-2.8.tar.gz \
     && mkdir sv \
