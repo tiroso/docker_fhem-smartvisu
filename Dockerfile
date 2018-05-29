@@ -11,11 +11,6 @@ RUN mkdir -p /etc/nginx \
     && rm v2.8.tar.gz \
     && mv smartvisu-2.8/* ./ \
     && rm -R smartvisu-2.8 \
-    && rm -r pages/alber* \
-    && rm -r pages/gleiss* \
-    && rm -r pages/docu \
-    && rm -r pages/fleisch* \
-    && rm -r pages/ott* \
     && cp -r pages/_template/ pages/MyPage/ \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/readme.txt -o readme.txt \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/config.ini.default -o config.ini \
