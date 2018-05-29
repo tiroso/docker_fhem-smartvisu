@@ -5,11 +5,10 @@ COPY entrypoint.sh /
 WORKDIR "/var/www/html"
 ## Install NGINX and GIT
 RUN mkdir -p /etc/nginx \
-    && apk update \
-    && apk add curl tar nginx \
-    && curl https://github.com/Martin-Gleiss/smartvisu/archive/v2.8.tar.gz -o smartvisu-2.8.tar.gz \
-    && tar -xvzf smartvisu-2.8.tar.gz \
-    && rm smartvisu-2.8.tar.gz \
+    && apk --update add curl tar nginx \
+    && curl https://github.com/Martin-Gleiss/smartvisu/archive/v2.8.tar.gz \
+    && tar -xvzf v2.8.tar.gz \
+    && rm v2.8.tar.gz \
     && mkdir sv \
     && mv smartvisu-2.8/* ./sv/ \
     && rm -R smartvisu-2.8 \
