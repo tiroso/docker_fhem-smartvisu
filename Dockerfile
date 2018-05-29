@@ -1,28 +1,24 @@
-FROM php:7-fpm-alpine
+FROM debian:stretch-slim
 
-COPY entrypoint.sh /
+ENV DEBIAN_FRONTEND noninteractive
+ENV TERM xterm
 
-WORKDIR "/var/www/html"
-## Install NGINX and GIT
-RUN mkdir -p /etc/nginx \
-    && apk --update add unzip curl nginx \
-    && curl -L http://www.smartvisu.de/download/smartVISU_2.8.zip -o v2.8.zip \
-    && unzip v2.8.zip \
-    && rm v2.8.zip \
-    && mv smartVISU/* ./ \
+RUN apt-get update \ 
+    && apt-get -y install curl unzip php7.0 libapache2-mod-php7.0 php7.0-mbstring \
+    && curl -L http://www.smartvisu.de/download/smartVISU_2.8.zip -o /var/www/html/smartVISU_2.8.zip \
+    && unzip /var/www/html/smartVISU_2.8.zip -d /var/www/html \
+    && rm smartVISU_2.8.zip \
+    && mv smartVISU/* /var/www/html/ \
     && rm -R smartVISU \
-    && cp -r pages/_template/ pages/MyPage/ \
-    && chown -R nginx:www-data /var/www/html \
-    && chmod g+w /var/www/html \
-    && chmod g+w /var/www/html/temp \
-    && chmod a+x /entrypoint.sh
-
-COPY nginx.conf /etc/nginx
-
-#&& curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/readme.txt -o readme.txt \
-#    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/config.ini.default -o config.ini \
-#    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/functions_config.php -o lib/functions_config.php \
-#    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/includes.php -o lib/includes.php \
-#    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/pages/base/configure.php -o pages/base/configure.php \
-
-ENTRYPOINT ["/entrypoint.sh"]
+    && rm index.html \
+    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/readme.txt -o readme.txt \
+    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/config.ini.default -o config.ini \
+    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/functions_config.php -o lib/functions_config.php \
+    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/includes.php -o lib/includes.php \
+    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/pages/base/configure.php -o pages/base/configure.php
+    && apt-get -y curl unzip 
+    && apt-get -y autoremove
+    && apt-get clean
+    chown -cR www-data:www-data /var/www/html
+    
+ENTRYPOINT ["apache2ctl", "-D", "FOREGROUND"]
