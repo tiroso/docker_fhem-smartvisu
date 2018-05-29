@@ -15,10 +15,10 @@ RUN apt-get update \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/config.ini.default -o config.ini \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/functions_config.php -o lib/functions_config.php \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/includes.php -o lib/includes.php \
-    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/pages/base/configure.php -o pages/base/configure.php
-    && apt-get -y curl unzip 
-    && apt-get -y autoremove
-    && apt-get clean
-    chown -cR www-data:www-data /var/www/html
+    && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/pages/base/configure.php -o pages/base/configure.php \
+    && apt-get -y curl unzip \
+    && apt-get -y autoremove \
+    && apt-get clean \
+    && chown -cR www-data:www-data /var/www/html
     
 ENTRYPOINT ["apache2ctl", "-D", "FOREGROUND"]
