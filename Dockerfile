@@ -6,7 +6,7 @@ WORKDIR "/var/www/html"
 ## Install NGINX and GIT
 RUN mkdir -p /etc/nginx \
     && apk --update add curl tar nginx \
-    && curl -L https://github.com/Martin-Gleiss/smartvisu/archive/v2.8.tar.gz \
+    && curl -L https://github.com/Martin-Gleiss/smartvisu/archive/v2.8.tar.gz -o v2.8.tar.gz \
     && tar -xvzf v2.8.tar.gz \
     && rm v2.8.tar.gz \
     && mkdir sv \
