@@ -6,12 +6,12 @@ WORKDIR "/var/www/html"
 ## Install NGINX and GIT
 RUN mkdir -p /etc/nginx \
     && apk add --update --no-cache curl unzip nginx \
-    && curl https://github.com/Martin-Gleiss/smartvisu/archive/v2.8.zip -o smartvisu-2.8.zip \
+    && curl http://www.smartvisu.de/download/smartvisu-2.8.zip -o smartvisu-2.8.zip \
     && unzip smartvisu-2.8.zip \
-    && rm smartVISU-2.8.zip \
+    && rm smartvisu-2.8.zip \
     && mkdir sv \
-    && mv smartVISU-2.8/* ./sv/ \
-    && rm -R smartVISU-2.8 \
+    && mv smartVISU/* ./sv/ \
+    && rm -R smartVISU \
     && rm index.html \
     && rm -r sv/pages/alber* \
     && rm -r sv/pages/gleiss* \
