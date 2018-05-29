@@ -16,7 +16,7 @@ RUN mkdir -p /etc/nginx \
     && rm -r pages/docu \
     && rm -r pages/fleisch* \
     && rm -r pages/ott* \
-    && cp -r pages/_template/ sv/pages/MyPage/ \
+    && cp -r pages/_template/ pages/MyPage/ \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/readme.txt -o readme.txt \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/config.ini.default -o config.ini \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/functions_config.php -o lib/functions_config.php \
