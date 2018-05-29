@@ -11,7 +11,6 @@ RUN mkdir -p /etc/nginx \
     && rm v2.8.tar.gz \
     && mkdir sv \
     && mv smartvisu-2.8/* ./sv/ \
-    && mkdir sv/temp \
     && rm -R smartvisu-2.8 \
     && rm -r sv/pages/alber* \
     && rm -r sv/pages/gleiss* \
@@ -26,7 +25,7 @@ RUN mkdir -p /etc/nginx \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/pages/base/configure.php -o sv/pages/base/configure.php \
     && chown -R nginx:www-data /var/www/html \
     && chmod g+w /var/www/html \
-    && chmod g+w /var/www/html/temp \
+    && chmod g+w /var/www/html/sv/temp \
     && chmod a+x /entrypoint.sh
 
 COPY nginx.conf /etc/nginx
