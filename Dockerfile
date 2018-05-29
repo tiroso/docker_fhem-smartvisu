@@ -7,7 +7,7 @@ WORKDIR "/var/www/html"
 RUN mkdir -p /etc/nginx \
     && apk add --update --no-cache curl fastjar nginx \
     && curl https://github.com/Martin-Gleiss/smartvisu/archive/v2.8.zip -o smartvisu-2.8.zip \
-    && jar xvf smartvisu-2.8.zip \
+    && fastjar xvf smartvisu-2.8.zip \
     && rm smartvisu-2.8.zip \
     && mkdir sv \
     && mv smartvisu-2.8/* ./sv/ \
