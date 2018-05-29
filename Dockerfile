@@ -5,7 +5,7 @@ COPY entrypoint.sh /
 
 ## Install NGINX and GIT
 RUN mkdir -p /etc/nginx \
-    && apk add --update --no-cache curl nginx
+    && apk add --update --no-cache curl tar nginx
 WORKDIR "/var/www/html"
 RUN curl https://github.com/Martin-Gleiss/smartvisu/archive/v2.8.tar.gz -o smartvisu-2.8.tar.gz \
     && tar -xvzf smartvisu-2.8.tar.gz \
