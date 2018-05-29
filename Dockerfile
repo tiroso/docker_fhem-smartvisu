@@ -11,6 +11,7 @@ RUN mkdir -p /etc/nginx \
     && rm v2.8.tar.gz \
     && mkdir sv \
     && mv smartvisu-2.8/* ./sv/ \
+    && mkdir sv/temp \
     && rm -R smartvisu-2.8 \
     && rm -r sv/pages/alber* \
     && rm -r sv/pages/gleiss* \
