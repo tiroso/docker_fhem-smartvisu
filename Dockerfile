@@ -17,6 +17,15 @@ RUN apt-get update \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/functions_config.php -o /var/www/html/sv/lib/functions_config.php \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/lib/includes.php -o /var/www/html/sv/lib/includes.php \
     && curl https://raw.githubusercontent.com/herrmannj/smartvisu-cleaninstall/master/pages/base/configure.php -o /var/www/html/sv/pages/base/configure.php \
+    && sed -i 's/driver =.*$/driver = 'Fhem'/' /var/www/html/sv/config.ini \
+    && sed -i 's/pages =.*$/pages = 'MyPage'/' /var/www/html/sv/config.ini \
+    && rm -R /var/www/html/sv/pages/Alber* \
+    && rm -R /var/www/html/sv/pages/Gleiss* \
+    && rm -R /var/www/html/sv/pages/Fleisch* \
+    && rm -R /var/www/html/sv/pages/Doc* \
+    && rm -R /var/www/html/sv/pages/Otter* \
+    && mkdir /var/www/html/sv/pages/MyPage \
+    && cp -R /var/www/html/sv/pages/_template/* /var/www/html/sv/pages/MyPage/ \
     && apt-get -y purge curl unzip \
     && apt-get -y autoremove \
     && apt-get clean \
