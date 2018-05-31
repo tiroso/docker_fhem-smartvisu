@@ -9,7 +9,7 @@
 <h4>Persistent Data</h4>
 <p>
   <code>docker volume create fhem-smartvisu</code><br>
-  <code>docker run --restart always -d --name fhem-smartvisu --mount source=fhem-smartvisu,target=/var/www/html/sv --publish "80:80" tiroso/fhem-smartvisu:v2.8</code>
+  <code>docker run --restart always -d --name fhem-smartvisu --mount source=fhem-smartvisu,target=/var/www/html/sv -h smartvisu --publish "80:80" tiroso/fhem-smartvisu:v2.8</code>
 </p>
 <h4>Without Persistent Data</h4>
 <p>
