@@ -30,6 +30,7 @@ RUN apt-get update \
     && apt-get -y autoremove \
     && apt-get clean \
     && chown -cR www-data:www-data /var/www/html
-RUN a2enmod rewrite
+RUN a2enmod rewrite \
+    && echo "AllowOverride All" > /var/www/html/.htaccess
     
 ENTRYPOINT ["apache2ctl", "-D", "FOREGROUND"]
