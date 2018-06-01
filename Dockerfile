@@ -33,6 +33,7 @@ RUN apt-get update \
 RUN echo "<Directory /var/www/html/>" >> /etc/apache2/sites-enabled/000-default.conf \
     && echo "   Options Indexes FollowSymLinks MultiViews" >> /etc/apache2/sites-enabled/000-default.conf \
     && echo "   DirectoryIndex index.php" >> /etc/apache2/sites-enabled/000-default.conf \
+    && echo "   RewriteBase /html" >> /etc/apache2/sites-enabled/000-default.conf \
     && echo "   AllowOverride All" >> /etc/apache2/sites-enabled/000-default.conf \
     && echo "   Order allow,deny" >> /etc/apache2/sites-enabled/000-default.conf \
     && echo "   allow from all" >> /etc/apache2/sites-enabled/000-default.conf \
