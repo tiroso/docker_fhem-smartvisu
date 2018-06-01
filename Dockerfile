@@ -30,5 +30,12 @@ RUN apt-get update \
     && apt-get -y autoremove \
     && apt-get clean \
     && chown -cR www-data:www-data /var/www/html
+RUN echo "<Directory /var/www/html/>" >> /etc/apache2/sites-enabled/000-default.conf \
+    && echo "   Options Indexes FollowSymLinks MultiViews" >> /etc/apache2/sites-enabled/000-default.conf \
+    && echo "   DirectoryIndex index.php" >> /etc/apache2/sites-enabled/000-default.conf \
+    && echo "   AllowOverride All" >> /etc/apache2/sites-enabled/000-default.conf \
+    && echo "   Order allow,deny" >> /etc/apache2/sites-enabled/000-default.conf \
+    && echo "   allow from all" >> /etc/apache2/sites-enabled/000-default.conf \
+    && echo "</Directory>" >> /etc/apache2/sites-enabled/000-default.conf \
     
 ENTRYPOINT ["apache2ctl", "-D", "FOREGROUND"]
