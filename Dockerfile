@@ -25,7 +25,7 @@ RUN apt-get update \
     && rm -R /var/www/html/pages/doc* \
     && rm -R /var/www/html/pages/otter* \
     && mkdir /var/www/html/pages/mypage \
-    && cp -R /var/www/html/pages/_template/* /var/www/html/sv/pages/mypage/ \
+    && cp -R /var/www/html/pages/_template/* /var/www/html/pages/mypage/ \
     && apt-get -y purge curl unzip \
     && apt-get -y autoremove \
     && apt-get clean \
