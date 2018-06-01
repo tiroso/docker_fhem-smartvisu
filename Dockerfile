@@ -30,6 +30,6 @@ RUN apt-get update \
     && apt-get -y autoremove \
     && apt-get clean \
     && chown -cR www-data:www-data /var/www/html
-RUN sed '/Alias \/icons\//d' /etc/apache2/mods-available/alias.conf
+RUN sed -i '/Alias \/icons\//d' /etc/apache2/mods-available/alias.conf
     
 ENTRYPOINT ["apache2ctl", "-D", "FOREGROUND"]
