@@ -36,6 +36,6 @@ RUN echo "<Directory /var/www/html/>" >> /etc/apache2/sites-enabled/000-default.
     && echo "   AllowOverride All" >> /etc/apache2/sites-enabled/000-default.conf \
     && echo "   Order allow,deny" >> /etc/apache2/sites-enabled/000-default.conf \
     && echo "   allow from all" >> /etc/apache2/sites-enabled/000-default.conf \
-    && echo "</Directory>" >> /etc/apache2/sites-enabled/000-default.conf \
+    && echo "</Directory>" >> /etc/apache2/sites-enabled/000-default.conf
     
 ENTRYPOINT ["apache2ctl", "-D", "FOREGROUND"]
