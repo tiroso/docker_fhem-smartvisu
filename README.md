@@ -15,3 +15,13 @@
 <p>
   <code>docker run --restart always -d --name fhem-smartvisu -h smartvisu --publish "80:80" tiroso/fhem-smartvisu:v2.8</code>
 </p>
+<h2>Backup FHEM Server</h2>
+<p>First you have to create a backup folder:<br>
+  <code>mkdir $PWD/fhem-server-backup</code><br>
+  Then run the backup in a seperate Docker Container based on alpine<br>
+  <code>docker run -it --rm -v fhem-server:/volume -v $PWD/fhem-server-backup:/backup alpine tar -cjf /backup/$(date "+%Y%m%d%H%M%S").tar.bz2 -C /volume ./</code>
+</p>
+<h2>Restore FHEM Server</h2>
+<p>Backup your selected backup to the volume<br>
+  <code>docker run -it -v fhem-server:/volume -v $PWD/fhem-server-backup:/backup alpine sh -c "rm -rf /volume/* /volume/..?* /volume/.[!.]* ; tar -C /volume/ -xjf /backup/<your backupfile>.tar.bz2"</code>
+</p>
