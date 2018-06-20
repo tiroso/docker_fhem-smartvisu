@@ -36,3 +36,4 @@ Backup your selected backup to the volume
 ```
 docker run -it -v fhem-smartvisu:/volume -v $PWD/fhem-smartvisu-backup:/backup alpine sh -c "rm -rf /volume/* /volume/..?* /volume/.[!.]* ; tar -C /volume/ -xjf /backup/backup.tar.bz2"
 ```
+For further information visit [my github repository](https://github.com/tiroso/docker_fhem-smartvisu)
